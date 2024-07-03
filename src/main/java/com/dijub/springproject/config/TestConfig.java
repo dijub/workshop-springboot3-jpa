@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.dijub.springproject.entities.Category;
 import com.dijub.springproject.entities.Order;
+import com.dijub.springproject.entities.Product;
 import com.dijub.springproject.entities.User;
 import com.dijub.springproject.entities.enums.OrderStatus;
 import com.dijub.springproject.repositories.CategoryRepository;
 import com.dijub.springproject.repositories.OrderRepository;
+import com.dijub.springproject.repositories.ProductRepository;
 import com.dijub.springproject.repositories.UserRepository;
 
 /**
@@ -32,13 +34,23 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
     @Override
     public void run(String... args) throws Exception {
         Category cat1 = new Category(null, "Electronics");
         Category cat2 = new Category(null, "Books");
         Category cat3 = new Category(null, "Computer");
 
+        Product p1 = new Product(null, "The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, "");
+        Product p2 = new Product(null, "Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, "");
+        Product p3 = new Product(null, "Macbook Pro", "Nam eleifend maximus tortor, at mollis.", 1250.0, "");
+        Product p4 = new Product(null, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
+        Product p5 = new Product(null, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
+
         categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
+        productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
 
         User u1 = new User(null, "Maria Brown", "maria@gmail.com", "98798888", "123456");
         User u2 = new User(null, "Alex Green", "alec@gmail.com", "98791234", "654321");
