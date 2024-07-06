@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 import com.dijub.springproject.entities.User;
 import com.dijub.springproject.repositories.UserRepository;
+import com.dijub.springproject.services.exceptions.ResourceNotFoundException;
 
 /**
  * UserService
@@ -26,7 +27,7 @@ public class UserService {
 
     public User findById(Long id) {
         Optional<User> obj = repository.findById(id);
-        return obj.get();
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 
     }
 
